@@ -1,0 +1,18 @@
+{
+    "author": "NStal",
+    "name": "smartbuffer",
+    "description": "An auto realloc version of buffer",
+    "version": "0.0.1",
+    "repository": {
+	"type": "git",
+	"url": "https://github.com/NStal/node-smartbuffer.git"
+    },
+    "keywords":["buffer"],
+    "engines": {
+	"node": "*"
+    },
+    "directories": {
+	"lib": "./lib"
+    },
+    "main":"./lib/smartbuffer.js"
+}
