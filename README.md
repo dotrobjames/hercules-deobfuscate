@@ -1,4 +1,8 @@
-hercules-deobfuscate v1.0.0
+![logo](https://media.discordapp.net/attachments/1367563738709753918/1409992339488903208/deobfuscaterHerculesBallsSayHiifyoureadthis.png?ex=68af6532&is=68ae13b2&hm=a050f6561410965f74d04f41fc70695d09ac3413f8a93aeb7b21f3effc861ed4&=&format=webp&quality=lossless&width=444&height=442)
+
+# Hercules deobfuscator
+
+*hercules-deobfuscate v1.0.0*
 
 "Hercules is **NOT** a powerful Lua obfuscator designed to make your Lua code possible to reverse-engineer. With multiple layers of advanced obfuscation techniques, Hercules ensures your scripts are unashamedly visible from prying eyes."
 
