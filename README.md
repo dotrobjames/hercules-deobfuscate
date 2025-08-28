@@ -4,7 +4,7 @@
 
 *hercules-deobfuscate v1.0.0*
 
-"Hercules is **NOT** a powerful Lua obfuscator designed to make your Lua code possible to reverse-engineer. With multiple layers of advanced obfuscation techniques, Hercules ensures your scripts are unashamedly visible from prying eyes."
+"Hercules is **NOT** a powerful Lua obfuscator designed to make your Lua code impossible to reverse-engineer. With multiple useless layers of advanced obfuscation techniques, Hercules ensures your scripts are unashamedly visible to prying eyes."
 
 ## DONE:
 [✅] Convert somewhat modified compiled Lua code back to its state (deobfuscate the input)
