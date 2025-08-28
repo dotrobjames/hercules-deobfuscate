@@ -34,7 +34,7 @@ const instructionType = [
 
 (async() => {
     (new Promise(async(res, rej) => {
-        /* decode bytestring -> */ fs.writeFileSync(`./decoder.lua`, `local a,b='${bytestring}','${charset}'local c={}for d=0,255 do c[string.char(d)]=d end;local function e(f,g)g=g or 1;local h=f:sub(g,g)return c[h]end;local i,j=#b,{}local k={}for d=1,i do k[b:sub(d,d)]=d-1 end;for l in a:gmatch("([^_]+)")do local m=0;for d=1,#l do m=m*i+k[l:sub(d,d)]end;j[#j+1]=string.char(m)end;local n={}for o in table.concat(j):gmatch("(.?)\\\\")do if#o>0 then n[#n+1]=o end end;io.open("./out","wb"):write(table.concat(n,""))`)
+        /* decode bytestring -> */ fs.writeFileSync(`./decoder.lua`, `local a,b='${bytestring}','${charset}'local c,d=#b,{}local e={}for f=1,c do e[b:sub(f,f)]=f-1 end;for g in a:gmatch("[^x]+")do local h=0;for f=1,#g do h=h*c+e[g:sub(f,f)]end;d[#d+1]=string.char(h)end;io.open("./out","wb"):write(table.concat(d,""))`)
         spawn("lua51", ["./decoder.lua"]).on("exit", res);
     })).then(() => {
         const buffer = smartBuffer.fromBuffer(fs.readFileSync("./out"));
