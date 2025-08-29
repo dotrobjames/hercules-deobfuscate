@@ -34,7 +34,7 @@ const instructionType = [
 
 (async() => {
     (new Promise(async(res, rej) => {
-        /* decode bytestring -> */ fs.writeFileSync(`./decoder.lua`, `local a,b='${bytestring}','${charset}'local c,d=#b,{}local e={}for f=1,c do e[b:sub(f,f)]=f-1 end;for g in a:gmatch("[^x]+")do local h=0;for f=1,#g do h=h*c+e[g:sub(f,f)]end;d[#d+1]=string.char(h)end;io.open("./out","wb"):write(table.concat(d,""))`)
+        /* decode bytestring -> */ fs.writeFileSync(`./decoder.lua`, `local a, b = "${bytestring}", "${charset}"local c,d=pcall(function()local e,f=#b,{}local g={}for h=1,e do g[b:sub(h,h)]=h-1 end;for i in a:gmatch("[^x]+")do local j=0;for h=1,#i do j=j*e+g[i:sub(h,h)]end;f[#f+1]=string.char(j)end;io.open("./out","wb"):write(table.concat(f,""))end)local k,l=pcall(function()local e={}for f=0,255 do e[string.char(f)]=f end;local function g(h,i)i=i or 1;local j=h:sub(i,i)return e[j]end;local m,n=#b,{}local o={}for f=1,m do o[b:sub(f,f)]=f-1 end;for p in a:gmatch("([^_]+)")do local q=0;for f=1,#p do q=q*m+o[p:sub(f,f)]end;n[#n+1]=string.char(q)end;local r={}for s in table.concat(n):gmatch("(.?)\\\\")do if#s>0 then r[#r+1]=s end end;io.open("./out","wb"):write(table.concat(r,""))end)`)
         spawn("lua51", ["./decoder.lua"]).on("exit", res);
     })).then(() => {
         const buffer = smartBuffer.fromBuffer(fs.readFileSync("./out"));
@@ -72,7 +72,7 @@ const instructionType = [
                 instruction.name = names[instruction.opcode];
                 instruction.a = (Data >> 6) & 0xff;
                 instruction.type = instructionType[instruction.opcode];
-        
+
                 switch (instruction.type) {
                     case "ABC": {
                         instruction.B = (Data >> 23) & 0x1FF;
@@ -111,7 +111,6 @@ const instructionType = [
                     constant.type = 4;
                 }
         
-                constants.push(constant);
             }
         
             const prototypeCount = buffer.readUInt32LE();
