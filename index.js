@@ -38,7 +38,6 @@ const instructionType = [
         spawn("lua51", ["./decoder.lua"]).on("exit", res);
     })).then(() => {
         const buffer = smartBuffer.fromBuffer(fs.readFileSync("./out"));
-
         function decodeChunk() {
             const chunk = {
                 upvalueCount: buffer.readUInt8(),
@@ -72,7 +71,7 @@ const instructionType = [
                 instruction.name = names[instruction.opcode];
                 instruction.a = (Data >> 6) & 0xff;
                 instruction.type = instructionType[instruction.opcode];
-
+        
                 switch (instruction.type) {
                     case "ABC": {
                         instruction.B = (Data >> 23) & 0x1FF;
@@ -111,6 +110,7 @@ const instructionType = [
                     constant.type = 4;
                 }
         
+                constants.push(constant);
             }
         
             const prototypeCount = buffer.readUInt32LE();
@@ -125,10 +125,10 @@ const instructionType = [
         
             return chunk;
         }
-        
+
         const chunk = decodeChunk();
         const writer = new (smartBuffer)();
-
+        
         let top = true;
         function serialize(chunk) {
             let hasVararg = false;
