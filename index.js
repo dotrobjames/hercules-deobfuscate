@@ -1,6 +1,6 @@
 const fs = require("fs");
 const input = fs.readFileSync("./print_obfuscated.lua", "utf8");
-const matched = input.match(/\w+\(\w+\('(.*)','(.*)'\)/i);
+const matched = input.match(/\w+\(\w+\(["'](.*)["'],["'](.*)["']\)/i);
 const bytestring = matched[1];
 const charset = matched[2];
 const smartBuffer = require("smart-buffer").SmartBuffer;
